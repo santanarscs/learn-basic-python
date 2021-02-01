@@ -10,6 +10,8 @@ class PontoTuristicoViewSet(ModelViewSet):
 
     serializer_class = PontoTuristicoSerializer
     filter_backends = [SearchFilter]
+    # altera o campo padrao de busca, porem o campo deve ser unico e exclusivo
+    lookup_field = 'nome'
     # observar os lookup_prefixes da classe SearchField '^ = @ $'
     search_fields = ['nome', 'descricao', 'endereco__linha1']
 
