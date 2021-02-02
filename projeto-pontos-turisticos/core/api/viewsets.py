@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
 from core.models import PontoTuristico
-from .serializers import PontoTuristicoSerializer
+from .serializers import PontoTuristicoSerializer, DocIdentificacaoSerializer
 
 
 class PontoTuristicoViewSet(ModelViewSet):
