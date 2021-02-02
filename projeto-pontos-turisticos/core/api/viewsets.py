@@ -11,7 +11,7 @@ class PontoTuristicoViewSet(ModelViewSet):
     serializer_class = PontoTuristicoSerializer
     filter_backends = [SearchFilter]
     # altera o campo padrao de busca, porem o campo deve ser unico e exclusivo
-    lookup_field = 'nome'
+    lookup_field = 'id'
     # observar os lookup_prefixes da classe SearchField '^ = @ $'
     search_fields = ['nome', 'descricao', 'endereco__linha1']
 
@@ -54,3 +54,13 @@ class PontoTuristicoViewSet(ModelViewSet):
     @action(methods=['get'], detail=False)
     def importar(self, request):
         pass
+
+    @action(methods=['post'], detail=True)
+    def associa_atracoes(self, request, id):
+        atracoes = request.data['ids']
+
+        ponto = PontoTuristico.objects.get(id=id)
+
+        ponto.atracoes.set(atracoes)
+        ponto.save()
+        return Response('OK')
